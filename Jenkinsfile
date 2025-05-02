@@ -16,7 +16,7 @@ pipeline{
         stage('Initializing Terraform'){
             steps {
                 script {
-                    dir('terraform/ec2-jenkins'){
+                    dir('terraform/eks-cluster'){
                         sh 'terraform init'
                     }
                 }
@@ -25,7 +25,7 @@ pipeline{
         stage('Validating Terraform'){
             steps {
                 script {
-                    dir('terraform/ec2-jenkins'){
+                    dir('terraform/eks-cluster'){
                         sh 'terraform validate'
                     }
                 }
@@ -34,19 +34,21 @@ pipeline{
         stage('Terraform Plan'){
             steps {
                 script {
-                    dir('terraform/ec2-jenkins'){
+                    dir('terraform/eks-cluster'){
                         sh 'terraform plan -var-file=variables/dev.tfvars'
+                    }
+                    input(message: "Are you sure to proceed?", ok: "Proceed")
+                }
+            }
+        }
+        stage('Creating/Destroying EKS Cluster'){
+            steps {
+                script {
+                    dir('terraform/eks-cluster'){
+                        sh 'terraform $action -var-file=variables/dev.tfvars -auto-approve' 
                     }
                 }
             }
         }
     }
-    post {
-    failure {
-        echo 'Pipeline failed.'
-    }
-    success {
-        echo 'Pipeline completed successfully.'
-    }
-}
 }
