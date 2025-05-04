@@ -1,4 +1,4 @@
-# Terraform EKS Jenkins CI/CD Project
+# End-to-End EKS Deployment with Jenkins CI/CD & Terraform
 
 ## Overview
 This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow using Terraform, Jenkins, and AWS EKS. It automates the provisioning of a Jenkins server on EC2, an EKS cluster, and the deployment of a sample Nginx application.
