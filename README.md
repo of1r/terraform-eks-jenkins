@@ -3,6 +3,10 @@
 ## Overview
 This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow using Terraform, Jenkins, and AWS EKS. It automates the provisioning of a Jenkins server on EC2, an EKS cluster, and the deployment of a sample Nginx application.
 
+## Architecture
+
+![EKS Jenkins Architecture](./assets/architecture.png)
+
 ## Project Structure
 - **terraform/ec2-jenkins/**: Terraform scripts to provision an EC2 instance for Jenkins, including VPC, subnets, and security groups.
 - **terraform/eks-cluster/**: Terraform scripts to create an EKS cluster with its own VPC and managed node groups.
