@@ -1,5 +1,11 @@
 # End-to-End EKS Deployment with Jenkins CI/CD & Terraform
 
+[![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)](https://www.terraform.io/)
+[![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
+[![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white)](https://www.jenkins.io/)
+[![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Overview
 This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow using Terraform, Jenkins, and AWS EKS. It automates the provisioning of a Jenkins server on EC2, an EKS cluster, and the deployment of a sample Nginx application.
 
@@ -13,6 +19,18 @@ This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow
 - **manifests/**: Kubernetes manifests for deploying the Nginx application.
 - **scripts/**: Bootstrap scripts for installing necessary tools on the EC2 instance.
 - **Jenkinsfile**: Defines the CI/CD pipeline for automating infrastructure and application deployment.
+
+## Prerequisites
+
+### Required Tools
+- Terraform >= 1.5.0 (compatible with AWS provider >= 5.25.0)
+- AWS CLI >= 2.0.0
+- Git >= 2.0.0
+- Jenkins >= 2.426.0 (LTS version)
+
+### Other Requirements
+- AWS account with appropriate permissions.
+- GitHub repository with the project code.
 
 ## Workflow
 1. **Infrastructure Provisioning**:
