@@ -1,4 +1,4 @@
-# https://registry.terraform.io/browse/modules?provider=aws
+# Ref -https://registry.terraform.io/browse/modules?provider=aws
 
 # Get the latest Amazon Linux 2 AMI
 data "aws_ami" "amazon_linux_2" {
