@@ -26,7 +26,6 @@ This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow
 - Terraform >= 1.5.0 (compatible with AWS provider >= 5.25.0)
 - AWS CLI >= 2.0.0
 - Git >= 2.0.0
-- Jenkins >= 2.426.0 (LTS version)
 
 ### Other Requirements
 - AWS account with appropriate permissions.
