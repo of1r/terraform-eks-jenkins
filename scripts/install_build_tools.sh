@@ -7,15 +7,20 @@ sudo wget -O /etc/yum.repos.d/jenkins.repo \
     https://pkg.jenkins.io/redhat/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io-2023.key
 sudo yum upgrade -y
+
 # Add required dependencies for the jenkins package
 sudo yum install java-17-amazon-corretto-devel -y
 sudo yum install jenkins -y
-sudo systemctl daemon-reload
 
-# Starting Jenkins
+# Configure and start Jenkins service
+sudo systemctl daemon-reload
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
 sudo systemctl status jenkins
+
+# Verify Jenkins installation
+echo "Jenkins version:"
+jenkins --version
 
 # Ref - https://www.atlassian.com/git/tutorials/install-git
 # Installing git
@@ -42,7 +47,7 @@ sudo chmod 777 /var/run/docker.sock
 
 # Installing AWS CLI
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-sudo apt install unzip -y
+sudo yum install unzip -y
 unzip awscliv2.zip
 sudo ./aws/install
 
