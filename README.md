@@ -13,12 +13,25 @@ This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow
 
 ![EKS Jenkins Architecture](./assets/architecture.png)
 
+## Features
+- **Infrastructure as Code**: Complete AWS infrastructure provisioning using Terraform
+- **Containerized Deployments**: Kubernetes-based container orchestration
+- **Automated CI/CD**: Jenkins pipeline for automated builds and deployments
+- **High Availability**: EKS managed node groups for reliable container hosting
+- **Security**: Properly configured VPCs, security groups, and IAM roles
+- **Scalability**: Easy scaling with Kubernetes
+
 ## Project Structure
-- **terraform/ec2-jenkins/**: Terraform scripts to provision an EC2 instance for Jenkins, including VPC, subnets, and security groups.
-- **terraform/eks-cluster/**: Terraform scripts to create an EKS cluster with its own VPC and managed node groups.
-- **manifests/**: Kubernetes manifests for deploying the Nginx application.
-- **scripts/**: Bootstrap scripts for installing necessary tools on the EC2 instance.
-- **Jenkinsfile**: Defines the CI/CD pipeline for automating infrastructure and application deployment.
+```
+.
+├── terraform/
+│   ├── ec2-jenkins/    # Terraform configs for Jenkins EC2 instance
+│   └── eks-cluster/    # Terraform configs for EKS cluster
+├── manifests/          # Kubernetes deployment manifests
+├── scripts/           # Installation and setup scripts
+├── Jenkinsfile        # CI/CD pipeline definition
+└── README.md
+```
 
 ## Prerequisites
 
@@ -31,44 +44,77 @@ This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow
 - AWS account with appropriate permissions.
 - GitHub repository with the project code.
 
-## Workflow
-1. **Infrastructure Provisioning**:
-   - Terraform provisions an EC2 instance for Jenkins and an EKS cluster.
-   - The EC2 instance is bootstrapped with Jenkins, Docker, Git, AWS CLI, Terraform, kubectl, and Helm.
-
-2. **CI/CD Pipeline**:
-   - Jenkins checks out the latest code from the repository.
-   - Terraform is initialized, validated, and planned for the EKS cluster.
-   - After manual approval, Terraform applies changes to create/update the EKS cluster.
-   - The Nginx application is deployed to the EKS cluster using Kubernetes manifests.
-
-3. **Application Deployment**:
-   - Jenkins uses kubectl to update the kubeconfig, create a namespace, and deploy the Nginx app and its service.
-
-## CI/CD Explanation
-- **Continuous Integration (CI)**: The Jenkins pipeline automates the process of checking out code, validating infrastructure, and planning changes. However, it currently requires manual triggering.
-- **Continuous Delivery/Deployment (CD)**: The pipeline automatically deploys the application to the EKS cluster after infrastructure changes are applied.
-
 ## Setup Instructions
-1. **Prerequisites**:
-   - AWS account with appropriate permissions.
-   - GitHub repository with the project code.
 
-2. **Installation**:
-   - Clone the repository.
-   - Configure AWS credentials in Jenkins.
-   - Run the Jenkins pipeline manually or set up a trigger for automatic builds.
+### 1. Initial Setup
+```bash
+# Clone the repository
+git clone <repository-url>
+cd terraform-eks-jenkins
+
+# Configure AWS credentials
+aws configure
+```
+
+### 2. Jenkins Setup
+1. Navigate to terraform/ec2-jenkins directory
+2. Update variables in terraform.tfvars
+3. Run Terraform commands:
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+### 3. EKS Cluster Deployment
+1. Navigate to terraform/eks-cluster directory
+2. Update cluster configuration in variables.tf
+3. Deploy using Terraform:
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+### 4. Jenkins Pipeline Configuration
+1. Access Jenkins UI using the EC2 public IP
+2. Install required plugins (AWS, Kubernetes, Pipeline)
+3. Configure AWS credentials in Jenkins
+4. Create and configure the pipeline job
+5. Run the pipeline
+
+## CI/CD Pipeline Stages
+1. **Code Checkout**: Pull latest code from repository
+2. **Infrastructure Validation**: Run Terraform plan
+3. **Infrastructure Deployment**: Apply Terraform changes
+4. **Application Deployment**: Deploy to EKS cluster
+5. **Health Checks**: Verify deployment status
+
+## Security Considerations
+- AWS resources are deployed in private subnets
+- Security groups are configured with minimal required access
+- IAM roles follow the principle of least privilege
+- Secrets are managed through AWS Secrets Manager
+- Network policies are implemented for pod-to-pod communication
+
+## Monitoring and Logging
+- EKS control plane logging enabled
+- CloudWatch container insights
+- Prometheus and Grafana support (optional)
+
+## Troubleshooting
+- Check Jenkins logs for pipeline failures
+- Verify AWS credentials and permissions
+- Ensure correct kubectl context
+- Review EKS cluster status and logs
+- Check security group configurations
 
 3. **Usage**:
    - Trigger the Jenkins pipeline to provision infrastructure and deploy the application.
    - Monitor the pipeline logs for deployment status.
 
-## Why Use This Setup?
-- **Automation**: Ensures consistent and error-free deployments.
-- **Version Control Integration**: Keeps infrastructure and application code in sync.
-- **Audit Trail**: Provides logs and history of all deployments.
-- **Team Collaboration**: Enables team members to trigger deployments and review logs.
-- **Extensibility**: Easily add more stages for testing, notifications, and multi-environment deployments.
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Future Improvements
 - Add automatic triggers for the Jenkins pipeline on code pushes.
