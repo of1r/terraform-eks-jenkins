@@ -49,7 +49,7 @@ This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow
 ### 1. Initial Setup
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/of1r/terraform-eks-jenkins.git
 cd terraform-eks-jenkins
 
 # Configure AWS credentials
