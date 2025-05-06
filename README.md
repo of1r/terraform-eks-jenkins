@@ -100,7 +100,6 @@ terraform apply
 ## Monitoring and Logging
 - EKS control plane logging enabled
 - CloudWatch container insights
-- Prometheus and Grafana support (optional)
 
 ## Troubleshooting
 - Check Jenkins logs for pipeline failures
@@ -112,9 +111,6 @@ terraform apply
 3. **Usage**:
    - Trigger the Jenkins pipeline to provision infrastructure and deploy the application.
    - Monitor the pipeline logs for deployment status.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Future Improvements
 - Add automatic triggers for the Jenkins pipeline on code pushes.
