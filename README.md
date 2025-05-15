@@ -5,7 +5,10 @@
 [![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white)](https://www.jenkins.io/)
 [![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Table of Contents
 - [1. End-to-End EKS Deployment with Jenkins CI/CD \& Terraform](#1-end-to-end-eks-deployment-with-jenkins-cicd--terraform)
+  - [Table of Contents](#table-of-contents)
   - [1.1. Overview](#11-overview)
   - [1.2. Architecture](#12-architecture)
   - [1.3. Features](#13-features)
@@ -13,6 +16,7 @@
   - [1.5. Prerequisites](#15-prerequisites)
     - [1.5.1. Required Tools](#151-required-tools)
     - [1.5.2. Other Requirements](#152-other-requirements)
+  - [Quick Start](#quick-start)
   - [1.6. Setup Instructions](#16-setup-instructions)
     - [1.6.1. Initial Setup](#161-initial-setup)
     - [1.6.2. Jenkins Setup](#162-jenkins-setup)
@@ -25,7 +29,6 @@
   - [License](#license)
   - [Future Improvements](#future-improvements)
 
-
 ## 1.1. Overview
 This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow using Terraform, Jenkins, and AWS EKS. It automates the provisioning of a Jenkins server on EC2, an EKS cluster, and the deployment of a sample Nginx application.
 
@@ -33,6 +36,12 @@ This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow
 
 ![EKS Jenkins Architecture](./assets/architecture.png)
 
+The architecture consists of:
+- Jenkins server running on EC2 for CI/CD orchestration
+- EKS cluster with managed node groups for container orchestration
+- VPC with public and private subnets for network isolation
+- Application load balancer for traffic distribution
+- 
 ## 1.3. Features
 - **Infrastructure as Code**: Complete AWS infrastructure provisioning using Terraform
 - **Containerized Deployments**: Kubernetes-based container orchestration
@@ -61,8 +70,29 @@ This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow
 - Git >= 2.0.0
 
 ### 1.5.2. Other Requirements
-- AWS account with appropriate permissions.
-- GitHub repository with the project code.
+- AWS account with appropriate permissions
+- GitHub repository with the project code
+- AWS credentials configured locally
+
+## Quick Start
+```bash
+# Clone the repository
+git clone https://github.com/of1r/terraform-eks-jenkins.git
+cd terraform-eks-jenkins
+
+# Configure AWS credentials
+aws configure
+
+# Deploy Jenkins server
+cd terraform/ec2-jenkins
+terraform init
+terraform apply
+
+# Deploy EKS cluster
+cd ../eks-cluster
+terraform init
+terraform apply
+```
 
 ## 1.6. Setup Instructions
 
@@ -98,7 +128,11 @@ terraform apply
 
 ### 1.6.4. Jenkins Pipeline Configuration
 1. Access Jenkins UI using the EC2 public IP
-2. Install required plugins (AWS, Kubernetes, Pipeline)
+2. Install required plugins:
+   - AWS Pipeline
+   - Kubernetes
+   - Docker Pipeline
+   - Git Integration
 3. Configure AWS credentials in Jenkins
 4. Create and configure the pipeline job
 5. Run the pipeline
@@ -128,9 +162,7 @@ terraform apply
 - Review EKS cluster status and logs
 - Check security group configurations
 
-3. **Usage**:
-   - Trigger the Jenkins pipeline to provision infrastructure and deploy the application.
-   - Monitor the pipeline logs for deployment status.
+Please ensure your code follows our coding standards and includes appropriate tests.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
