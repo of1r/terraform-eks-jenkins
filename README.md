@@ -6,11 +6,26 @@
 [![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## 1.1. Overview
+This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow using Terraform, Jenkins, and AWS EKS. It automates the provisioning of a Jenkins server on EC2, an EKS cluster, and the deployment of a sample Nginx application.
+
+## 1.2. Architecture
+
+![EKS Jenkins Architecture](./assets/architecture.png)
+
+The architecture consists of:
+- Jenkins server running on EC2 for CI/CD orchestration
+- EKS cluster with managed node groups for container orchestration
+- VPC with public and private subnets for network isolation
+- Application load balancer for traffic distribution
+
 ## Table of Contents
 - [1. End-to-End EKS Deployment with Jenkins CI/CD \& Terraform](#1-end-to-end-eks-deployment-with-jenkins-cicd--terraform)
-  - [Table of Contents](#table-of-contents)
   - [1.1. Overview](#11-overview)
   - [1.2. Architecture](#12-architecture)
+  - [Table of Contents](#table-of-contents)
+  - [1.1. Overview](#11-overview-1)
+  - [1.2. Architecture](#12-architecture-1)
   - [1.3. Features](#13-features)
   - [1.4. Project Structure](#14-project-structure)
   - [1.5. Prerequisites](#15-prerequisites)
