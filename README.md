@@ -1,4 +1,4 @@
-# 1. End-to-End EKS Deployment with Jenkins CI/CD & Terraform
+# End-to-End EKS Deployment with Jenkins CI/CD & Terraform
 
 [![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)](https://www.terraform.io/)
 [![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
@@ -6,10 +6,10 @@
 [![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 1.1. Overview
+## Overview
 This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow using Terraform, Jenkins, and AWS EKS. It automates the provisioning of a Jenkins server on EC2, an EKS cluster, and the deployment of a sample Nginx application.
 
-## 1.2. Architecture
+## Architecture
 
 ![EKS Jenkins Architecture](./assets/architecture.png)
 
@@ -20,34 +20,34 @@ The architecture consists of:
 - Application load balancer for traffic distribution
 
 ## Table of Contents
-- [1. End-to-End EKS Deployment with Jenkins CI/CD \& Terraform](#1-end-to-end-eks-deployment-with-jenkins-cicd--terraform)
-  - [1.1. Overview](#11-overview)
-  - [1.2. Architecture](#12-architecture)
+- [End-to-End EKS Deployment with Jenkins CI/CD \& Terraform](#end-to-end-eks-deployment-with-jenkins-cicd--terraform)
+  - [Overview](#overview)
+  - [Architecture](#architecture)
   - [Table of Contents](#table-of-contents)
-  - [1.1. Overview](#11-overview-1)
-  - [1.2. Architecture](#12-architecture-1)
-  - [1.3. Features](#13-features)
-  - [1.4. Project Structure](#14-project-structure)
-  - [1.5. Prerequisites](#15-prerequisites)
-    - [1.5.1. Required Tools](#151-required-tools)
-    - [1.5.2. Other Requirements](#152-other-requirements)
+  - [Overview](#overview-1)
+  - [Architecture](#architecture-1)
+  - [Features](#features)
+  - [Project Structure](#project-structure)
+  - [Prerequisites](#prerequisites)
+    - [Required Tools](#required-tools)
+    - [Other Requirements](#other-requirements)
   - [Quick Start](#quick-start)
-  - [1.6. Setup Instructions](#16-setup-instructions)
-    - [1.6.1. Initial Setup](#161-initial-setup)
-    - [1.6.2. Jenkins Setup](#162-jenkins-setup)
-    - [1.6.3. EKS Cluster Deployment](#163-eks-cluster-deployment)
-    - [1.6.4. Jenkins Pipeline Configuration](#164-jenkins-pipeline-configuration)
-  - [1.7. CI/CD Pipeline Stages](#17-cicd-pipeline-stages)
-  - [1.8. Security Considerations](#18-security-considerations)
-  - [1.9. Monitoring and Logging](#19-monitoring-and-logging)
-  - [1.10. Troubleshooting](#110-troubleshooting)
+  - [Setup Instructions](#setup-instructions)
+    - [Initial Setup](#initial-setup)
+    - [Jenkins Setup](#jenkins-setup)
+    - [EKS Cluster Deployment](#eks-cluster-deployment)
+    - [Jenkins Pipeline Configuration](#jenkins-pipeline-configuration)
+  - [CI/CD Pipeline Stages](#cicd-pipeline-stages)
+  - [Security Considerations](#security-considerations)
+  - [Monitoring and Logging](#monitoring-and-logging)
+  - [Troubleshooting](#troubleshooting)
   - [License](#license)
   - [Future Improvements](#future-improvements)
 
-## 1.1. Overview
+## Overview
 This project demonstrates a full Infrastructure-as-Code (IaC) and CI/CD workflow using Terraform, Jenkins, and AWS EKS. It automates the provisioning of a Jenkins server on EC2, an EKS cluster, and the deployment of a sample Nginx application.
 
-## 1.2. Architecture
+## Architecture
 
 ![EKS Jenkins Architecture](./assets/architecture.png)
 
@@ -57,7 +57,7 @@ The architecture consists of:
 - VPC with public and private subnets for network isolation
 - Application load balancer for traffic distribution
 - 
-## 1.3. Features
+## Features
 - **Infrastructure as Code**: Complete AWS infrastructure provisioning using Terraform
 - **Containerized Deployments**: Kubernetes-based container orchestration
 - **Automated CI/CD**: Jenkins pipeline for automated builds and deployments
@@ -65,7 +65,7 @@ The architecture consists of:
 - **Security**: Properly configured VPCs, security groups, and IAM roles
 - **Scalability**: Easy scaling with Kubernetes
 
-## 1.4. Project Structure
+## Project Structure
 ```
 .
 ├── terraform/
@@ -77,14 +77,14 @@ The architecture consists of:
 └── README.md
 ```
 
-## 1.5. Prerequisites
+## Prerequisites
 
-### 1.5.1. Required Tools
+### Required Tools
 - Terraform >= 1.5.0 (compatible with AWS provider >= 5.25.0)
 - AWS CLI >= 2.0.0
 - Git >= 2.0.0
 
-### 1.5.2. Other Requirements
+### Other Requirements
 - AWS account with appropriate permissions
 - GitHub repository with the project code
 - AWS credentials configured locally
@@ -109,9 +109,9 @@ terraform init
 terraform apply
 ```
 
-## 1.6. Setup Instructions
+## Setup Instructions
 
-### 1.6.1. Initial Setup
+### Initial Setup
 ```bash
 # Clone the repository
 git clone https://github.com/of1r/terraform-eks-jenkins.git
@@ -121,7 +121,7 @@ cd terraform-eks-jenkins
 aws configure
 ```
 
-### 1.6.2. Jenkins Setup
+### Jenkins Setup
 1. Navigate to terraform/ec2-jenkins directory
 2. Update variables in terraform.tfvars
 3. Run Terraform commands:
@@ -131,7 +131,7 @@ terraform plan
 terraform apply
 ```
 
-### 1.6.3. EKS Cluster Deployment
+### EKS Cluster Deployment
 1. Navigate to terraform/eks-cluster directory
 2. Update cluster configuration in variables.tf
 3. Deploy using Terraform:
@@ -141,7 +141,7 @@ terraform plan
 terraform apply
 ```
 
-### 1.6.4. Jenkins Pipeline Configuration
+### Jenkins Pipeline Configuration
 1. Access Jenkins UI using the EC2 public IP
 2. Install required plugins:
    - AWS Pipeline
@@ -152,25 +152,25 @@ terraform apply
 4. Create and configure the pipeline job
 5. Run the pipeline
 
-## 1.7. CI/CD Pipeline Stages
+## CI/CD Pipeline Stages
 1. **Code Checkout**: Pull latest code from repository
 2. **Infrastructure Validation**: Run Terraform plan
 3. **Infrastructure Deployment**: Apply Terraform changes
 4. **Application Deployment**: Deploy to EKS cluster
 5. **Health Checks**: Verify deployment status
 
-## 1.8. Security Considerations
+## Security Considerations
 - AWS resources are deployed in private subnets
 - Security groups are configured with minimal required access
 - IAM roles follow the principle of least privilege
 - Secrets are managed through AWS Secrets Manager
 - Network policies are implemented for pod-to-pod communication
 
-## 1.9. Monitoring and Logging
+## Monitoring and Logging
 - EKS control plane logging enabled
 - CloudWatch container insights
 
-## 1.10. Troubleshooting
+## Troubleshooting
 - Check Jenkins logs for pipeline failures
 - Verify AWS credentials and permissions
 - Ensure correct kubectl context
